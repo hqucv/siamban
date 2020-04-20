@@ -3,7 +3,12 @@
 This project hosts the code for implementing the SiamBAN algorithm for visual tracking, as presented in our paper: 
 
 ```
-Siamese Box Adaptive Network for Visual Tracking. Zedu Chen, Bineng Zhong, Guorong Li, Shengping Zhang, Rongrong Ji. IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020.
+@inproceedings{siamban,
+  title={Siamese Box Adaptive Network for Visual Tracking},
+  author={Chen, Zedu and Zhong, Bineng and Li, Guorong and Zhang, Shengping and Ji, Rongrong},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+  year={2020}
+}
 ```
 
 The full paper is available [here](https://arxiv.org/abs/2003.06761). The raw results are [here](https://drive.google.com/file/d/1-RaD5deAqXdISCBSFG5q62ialrxegsCa/view?usp=sharing). The code based on the [PySOT](https://github.com/STVIR/pysot).
