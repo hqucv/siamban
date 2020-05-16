@@ -81,4 +81,4 @@ See [TRAIN.md](TRAIN.md) for detailed instruction.
 
 ## License
 
-This project is released under the Apache 2.0 license. 
+This project is released under the [Apache 2.0 license](LICENSE). 

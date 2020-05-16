@@ -32,12 +32,12 @@ parser.add_argument('--video', default='', type=str,
         help='eval one special video')
 parser.add_argument('--vis', action='store_true',
         help='whether visualzie result')
-parser.add_argument("--gpu_id", default="not_set", type=str, 
+parser.add_argument('--gpu_id', default='not_set', type=str, 
         help="gpu id")
 
 args = parser.parse_args()
 
-if args.gpu_id != "not_set":
+if args.gpu_id != 'not_set':
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu_id
 
 torch.set_num_threads(1)
