@@ -6,7 +6,7 @@ This project hosts the code for implementing the SiamBAN algorithm for visual tr
 @inproceedings{siamban,
   title={Siamese Box Adaptive Network for Visual Tracking},
   author={Chen, Zedu and Zhong, Bineng and Li, Guorong and Zhang, Shengping and Ji, Rongrong},
-  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
   year={2020}
 }
 ```
