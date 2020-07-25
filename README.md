@@ -17,9 +17,11 @@ The full paper is available [here](https://arxiv.org/abs/2003.06761). The raw re
 
 
 <div align="center">
-  <img src="demo/output/bag_tracking.gif" width="480px" />
-  <p>Example SiamBAN outputs.</p>
+  <img src="demo/output/12.gif" width="1280px" />
+  <img src="demo/output/34.gif" width="1280px" />
+  <p>Examples of SiamBAN outputs. The green boxes are the ground-truth bounding boxes of VOT2018, the yellow boxes are results yielded by SiamBAN.</p>
 </div>
+
 
 
 
