@@ -13,6 +13,8 @@ All configurations for these baselines are located in the [`experiments`](experi
 | siamban_r50_l234     | 0.452/0.597/0.178  |         -         | [model](https://drive.google.com/file/d/1SJwPUpTQm6xL44-8jLvDrSMhOzVsbLAZ/view?usp=sharing) |
 | siamban_r50_l234_otb |         -          |    0.696/0.910    | [model](https://drive.google.com/file/d/1d_z_7azA56PrnyQWkRFnZmxb1IGU-72E/view?usp=sharing) |
 
+The models can also be downloaded from [here](https://pan.baidu.com/s/1B4_E9O83dkH_AwEx8kiCzg), extraction code: `f5dz`. 
+
 Note:
 
 -  `r50_lxyz` denotes the outputs of stage x, y, and z in [ResNet-50](https://arxiv.org/abs/1512.03385).
