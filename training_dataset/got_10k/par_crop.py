@@ -9,7 +9,7 @@ import time
 
 
 got10k_base_path = './GOT_10k'
-sub_sets = sorted({'train_data', 'val_data'})
+sub_sets = sorted({'train', 'val'})
 
 
 # Print iterations progress (thanks StackOverflow)
@@ -40,7 +40,7 @@ def crop_hwc(image, bbox, out_sz, padding=(0, 0, 0)):
     c = -a * bbox[0]
     d = -b * bbox[1]
     mapping = np.array([[a, 0, c],
-                        [0, b, d]]).astype(np.float)
+                        [0, b, d]]).astype(float)  # modified from np.float to float
     crop = cv2.warpAffine(image, mapping, (out_sz, out_sz), borderMode=cv2.BORDER_CONSTANT, borderValue=padding)
     return crop
 
@@ -65,12 +65,9 @@ def crop_like_SiamFC(image, bbox, context_amount=0.5, exemplar_size=127, instanc
     return z, x
 
 
-def crop_video(sub_set, video_set, video, crop_path, instanc_size):
-    video_crop_base_path = join(crop_path, sub_set, video_set, video)
-    if not exists(video_crop_base_path): makedirs(video_crop_base_path)
-
+def crop_video(sub_set, video_set, crop_path, instanc_size):
     sub_set_base_path = join(got10k_base_path, sub_set, video_set)
-    video_base_path = join(sub_set_base_path, video)
+    video_base_path = join(sub_set_base_path)
     gts_path = join(video_base_path, 'groundtruth.txt')
     gts = np.loadtxt(open(gts_path, "rb"), delimiter=',')
     jpgs = sorted(glob.glob(join(video_base_path, '*.jpg')))
@@ -80,6 +77,9 @@ def crop_video(sub_set, video_set, video, crop_path, instanc_size):
         jpgs = sorted(glob.glob(join(video_base_path, '*.png')))
         if not jpgs:
             print('no jpg and png files, check data please')
+
+    video_crop_base_path = join(crop_path, sub_set, video_set)
+    if not exists(video_crop_base_path): makedirs(video_crop_base_path)
 
     for idx, img_path in enumerate(jpgs):
         gt = gts[idx]
@@ -101,14 +101,13 @@ def main(instanc_size=511, num_threads=24):
 
     for sub_set in sub_sets:
         sub_set_base_path = join(got10k_base_path, sub_set)
-        for video_set in sorted(listdir(sub_set_base_path)):
-            videos = sorted(listdir(join(sub_set_base_path, video_set)))
-            n_videos = len(videos)
-            with futures.ProcessPoolExecutor(max_workers=num_threads) as executor:
-                fs = [executor.submit(crop_video, sub_set, video_set, video, crop_path, instanc_size) for video in videos]
-                for i, f in enumerate(futures.as_completed(fs)):
-                    # Write progress to error so that it can be seen
-                    printProgress(i, n_videos, prefix=video_set, suffix='Done ', barLength=40)
+        video_sets = sorted(listdir(sub_set_base_path))
+        n_videos = len(video_sets)
+        with futures.ProcessPoolExecutor(max_workers=num_threads) as executor:
+            fs = [executor.submit(crop_video, sub_set, video_set, crop_path, instanc_size) for video_set in video_sets]
+            for i, f in enumerate(futures.as_completed(fs)):
+                # Write progress to error so that it can be seen
+                printProgress(i, n_videos, prefix=video_sets[i], suffix='Done ', barLength=40)
 
 
 if __name__ == '__main__':
